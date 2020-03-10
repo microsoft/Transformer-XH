@@ -1,0 +1,76 @@
+{
+    "name": "transformer_xh_hotpot",
+    "task": "hotpotqa",
+    "model": {
+        "bert-model": true,
+        "vocab_size": 40000,
+        "emb_size": 200,
+        "bert_max_len":300,
+        "gnn_layer": 9,
+        "cuda_device": 1
+
+    },
+    "training": {
+        "optimizer": {
+            "type": "Adam",
+            "params": {
+                "lr": 0.004,
+                "amsgrad": true
+            },
+            "scheduler": {
+                "type": "CyclicLR",
+                "params": {
+                    "base_lr": 0.0001,
+                    "max_lr": 0.004,
+                    "step_size": 5,
+                    "mode": "triangular"
+                }
+            }
+        },
+        "epochs": 2,
+        "train_batch_size": 1,
+	    "test_batch_size": 1,
+        "num_workers": 0,
+        "gradient_clipping": {
+            "use": false,
+            "clip_value": 1.0
+        },
+        "shuffle": true,
+        "warmup_proportion": 0,
+        "learning_rate": 1e-5,
+        "decay_rate": 0.99,
+        "decay_step": 100000,
+        "total_training_steps": 500000
+    },
+    "system": {
+        "device": "cuda",
+        "num_workers": 1,
+        "base_dir": "experiments/",
+	    "train_data": "data/hotpot_train_graph.json",
+        "validation_data": "data/hotpot_dev_graph.json",
+        "test_data": "data/hotpot_dev_graph.json"
+    },
+    "bert_token_file": "bert-base-uncased",
+    "bert_model_file": "bert-base-uncased",
+    "bert_model_config": {
+        "attention_probs_dropout_prob": 0.1, 
+  	"directionality": "bidi", 
+  	"hidden_act": "gelu", 
+  	"hidden_dropout_prob": 0.1, 
+ 	"hidden_size": 768, 
+  	"initializer_range": 0.02, 
+  	"intermediate_size": 3072, 
+  	"max_position_embeddings": 512, 
+  	"num_attention_heads": 12, 
+  	"num_hidden_layers": 12, 
+  	"pooler_fc_size": 768, 
+  	"pooler_num_attention_heads": 12, 
+  	"pooler_num_fc_layers": 3, 
+  	"pooler_size_per_head": 128, 
+    "pooler_type": "first_token_transform", 
+    "dropout": 0.6,
+    "gnn_hidden_state": 64,
+    "gnn_head": 12
+      
+    }
+}
