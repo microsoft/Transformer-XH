@@ -32,4 +32,4 @@ Similarly, fever_train.sh for training on FEVER task, fever_eval.sh for evaluati
 
 
 ## Contact
-If you have questions, suggestions and bug reports, please email chenz@cs.umd.edu.
+If you have questions, suggestions and bug reports, please email chenz@cs.umd.edu and/or Chenyan.Xiong@microsoft.com.
