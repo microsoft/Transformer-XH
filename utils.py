@@ -2,7 +2,7 @@
 # Licensed under the MIT license.
 
 import re
-from fuzzywuzzy import fuzz, process as fuzzy_process
+from rapidfuzz import fuzz, process as fuzzy_process
 import numpy as np
 
 
@@ -20,7 +20,7 @@ def fuzzy_find(entities, sentence):
             final_word = item.split()[-1]
             # from end
             retry = False
-            while fuzz.partial_ratio(final_word.lower(), matched) < 80:
+            while not fuzz.partial_ratio(final_word.lower(), matched, score_cutoff=80):
                 retry = True
                 end = len(item) - len(final_word)
                 while end > 0 and item[end - 1].isspace():
@@ -41,7 +41,7 @@ def fuzzy_find(entities, sentence):
             # from start
             retry = False
             first_word = item.split()[0]
-            while fuzz.partial_ratio(first_word.lower(), matched) < 80:
+            while not fuzz.partial_ratio(first_word.lower(), matched, score_cutoff=80):
                 retry = True
                 start = len(first_word)
                 while start < len(item) and item[start].isspace():
