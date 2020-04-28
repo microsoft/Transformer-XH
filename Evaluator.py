@@ -102,7 +102,7 @@ def evaluation_hotpot(model, eval_file, config, args):
     logging.info("********* Node accuracy ************{}".format(accu))
     accu = span_correct / total
     logging.info("********* Span accuracy ************{}".format(accu))
-    return final_pred
+    return accu, final_pred
 
     
 

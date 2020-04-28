@@ -13,7 +13,8 @@ Resources:
 The source codes of the paper "Transformer-XH: Multi-evidence Reasoning with Extra Hop Attention (ICLR 2020)".
 
 # Dependency Installation
-Run python setup.py develop to install required dependencies for transformer-xh.
+First, Run python setup.py develop to install required dependencies for transformer-xh.
+Also install apex (for distributed training) following official documentation [here](https://github.com/NVIDIA/apex).
 
 # Data and trained model Download
 

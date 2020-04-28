@@ -142,7 +142,7 @@ if __name__ == '__main__':
         eval_file = config["system"]['test_data']
         
         if config['task'] == 'hotpotqa':
-            final_pred = evaluation_hotpot(model, eval_file, config, args)
+            auc, final_pred = evaluation_hotpot(model, eval_file, config, args)
             json.dump(final_pred, open("out_dev.json", "w"))
         elif config['task'] == 'fever':
             auc, pred_dict = evaluation_fever(model, eval_file, config, args)
@@ -171,8 +171,7 @@ if __name__ == '__main__':
 
             optimizer = FusedAdam(optimizer_grouped_parameters,
                                 lr=config["training"]["learning_rate"],
-                                bias_correction=False,
-                                max_grad_norm=1.0)
+                                bias_correction=False)
             if args.loss_scale == 0:
                 optimizer = FP16_Optimizer(optimizer, dynamic_loss_scale=True)
             else:
