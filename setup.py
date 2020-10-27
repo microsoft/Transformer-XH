@@ -31,6 +31,6 @@ setup(name='transformer-xh',
           'dgl',
           'tqdm',
           'pytorch_transformers',
-          'fuzzywuzzy'
+          'rapidfuzz'
       ], 
       )
